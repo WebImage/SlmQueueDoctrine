@@ -205,9 +205,9 @@ class DoctrineQueue extends AbstractQueue implements DoctrineQueueInterface
         }
 
         $data = json_decode($row['data'], true);
-        // Add job ID to meta data
+
         $data['metadata']['id'] = $row['id'];
-		
+
         return $this->createJob($data['class'], $data['content'], $data['metadata']);
     }
 
@@ -291,9 +291,9 @@ class DoctrineQueue extends AbstractQueue implements DoctrineQueueInterface
         $sql  = 'SELECT * FROM ' . $this->tableName.' WHERE id = ?';
         $row  = $this->connection->fetchAssoc($sql, array($id), array(Type::SMALLINT));
         $data = json_decode($row['data'], true);
-        // Add job ID to meta data
+
         $data['metadata']['id'] = $row['id'];
-		
+
         return $this->createJob($data['class'], $data['content'], $data['metadata']);
     }
 
